@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PayNexa — Responsive E-Wallet Web App</title>
+
+  <!-- Bootstrap 5 + Icons + Font -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-orb orb-one"></div>
+    <div class="splash-orb orb-two"></div>
+    <div class="splash-card text-center">
+      <div class="brand-logo mx-auto mb-4">
+        <i class="bi bi-wallet2"></i>
+      </div>
+      <h1 class="fw-bold mb-2">PayNexa</h1>
+      <p class="mb-0 text-white-75">Transaksi Cepat, Aman, dan Mudah</p>
+    </div>
+  </div>
+
+  <!-- Auth Pages -->
+  <main id="authLayout" class="auth-layout">
+    <section id="loginPage" class="auth-page active">
+      <div class="auth-shell container">
+        <div class="auth-hero d-none d-lg-flex">
+          <div>
+            <span class="secure-pill mb-4"><i class="bi bi-shield-check"></i> Secure Fintech Experience</span>
+            <h1>Dompet digital modern untuk transaksi harian.</h1>
+            <p>Top up, transfer, QRIS, riwayat transaksi, hingga monitoring admin dalam satu web app responsive.</p>
+            <div class="floating-wallet mt-4">
+              <div class="mini-card"></div>
+              <div>
+                <span>Saldo tersedia</span>
+                <strong>Rp 2.450.000</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-card">
+          <div class="text-center mb-4">
+            <div class="brand-logo small mx-auto mb-3"><i class="bi bi-wallet2"></i></div>
+            <h2 class="fw-bold mb-1">Masuk ke Akun Anda</h2>
+            <p class="text-secondary mb-0">Akun dan transaksi Anda dilindungi.</p>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label">Email / Nomor HP</label>
+              <div class="input-icon">
+                <i class="bi bi-person"></i>
+                <input type="text" class="form-control" id="loginIdentity" placeholder="rexy@email.com / 08xxxxxxxxxx" required>
+              </div>
+              <div class="invalid-feedback">Email atau nomor HP wajib diisi.</div>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label">Password</label>
+              <div class="input-icon input-password">
+                <i class="bi bi-lock"></i>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Masukkan password" required>
+                <button type="button" class="btn-toggle-password" data-target="loginPassword">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback">Password wajib diisi.</div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe">
+                <label class="form-check-label small text-secondary" for="rememberMe">Ingat saya</label>
+              </div>
+              <a href="#" class="small fw-semibold text-decoration-none">Lupa password?</a>
+            </div>
+
+            <button class="btn btn-primary w-100 btn-lg" type="submit">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Login
+            </button>
+
+            <div class="secure-note mt-4">
+              <i class="bi bi-shield-lock-fill"></i>
+              <span>Login aman dengan enkripsi dan proteksi perangkat.</span>
+            </div>
+
+            <p class="text-center text-secondary mt-4 mb-0">
+              Belum punya akun?
+              <a href="#" class="fw-bold text-decoration-none" data-auth-target="registerPage">Daftar akun</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="registerPage" class="auth-page">
+      <div class="auth-shell container">
+        <div class="auth-card mx-auto">
+          <div class="text-center mb-4">
+            <div class="brand-logo small mx-auto mb-3"><i class="bi bi-person-plus"></i></div>
+            <h2 class="fw-bold mb-1">Buat Akun Baru</h2>
+            <p class="text-secondary mb-0">Daftar untuk mulai transaksi digital.</p>
+          </div>
+
+          <form id="registerForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control" id="regName" placeholder="Rexy Kurniawan" required>
+              <div class="invalid-feedback">Nama lengkap wajib diisi.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email / Nomor HP</label>
+              <input type="text" class="form-control" id="regIdentity" placeholder="email atau nomor HP" required>
+              <div class="invalid-feedback">Email atau nomor HP wajib diisi.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <div class="input-icon input-password">
+                <i class="bi bi-lock"></i>
+                <input type="password" class="form-control" id="regPassword" placeholder="Minimal 6 karakter" required minlength="6">
+                <button type="button" class="btn-toggle-password" data-target="regPassword">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+              <div class="password-strength mt-2">
+                <span></span>
+              </div>
+              <div class="invalid-feedback">Password minimal 6 karakter.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Konfirmasi Password</label>
+              <input type="password" class="form-control" id="regConfirm" placeholder="Ulangi password" required>
+              <div class="invalid-feedback">Konfirmasi password belum sesuai.</div>
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="termsCheck" required>
+              <label class="form-check-label text-secondary" for="termsCheck">
+                Saya menyetujui syarat dan ketentuan layanan.
+              </label>
+              <div class="invalid-feedback">Persetujuan wajib dicentang.</div>
+            </div>
+
+            <button class="btn btn-primary w-100 btn-lg" type="submit">Daftar</button>
+            <p class="text-center text-secondary mt-4 mb-0">
+              Sudah punya akun?
+              <a href="#" class="fw-bold text-decoration-none" data-auth-target="loginPage">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Main Application -->
+  <div id="appLayout" class="app-layout d-none">
+
+    <!-- Desktop Sidebar -->
+    <aside class="sidebar d-none d-lg-flex">
+      <div class="sidebar-brand">
+        <div class="brand-logo small"><i class="bi bi-wallet2"></i></div>
+        <div>
+          <strong>PayNexa</strong>
+          <span>Secure Wallet</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" data-page="dashboardPage"><i class="bi bi-house-door"></i><span>Dashboard</span></button>
+        <button class="nav-btn" data-page="topupPage"><i class="bi bi-plus-circle"></i><span>Top Up</span></button>
+        <button class="nav-btn" data-page="transferPage"><i class="bi bi-arrow-left-right"></i><span>Transfer</span></button>
+        <button class="nav-btn" data-page="qrisPage"><i class="bi bi-qr-code-scan"></i><span>QRIS</span></button>
+        <button class="nav-btn" data-page="historyPage"><i class="bi bi-clock-history"></i><span>Riwayat</span></button>
+        <button class="nav-btn" data-page="notificationsPage"><i class="bi bi-bell"></i><span>Notifikasi</span></button>
+        <button class="nav-btn" data-page="profilePage"><i class="bi bi-person"></i><span>Profil</span></button>
+        <button class="nav-btn" data-page="supportPage"><i class="bi bi-headset"></i><span>FAQ & CS</span></button>
+
+        <div class="nav-divider"></div>
+        <small class="nav-label">Admin Area</small>
+
+        <button class="nav-btn" data-page="adminDashboardPage"><i class="bi bi-speedometer2"></i><span>Admin Dashboard</span></button>
+        <button class="nav-btn" data-page="adminUsersPage"><i class="bi bi-people"></i><span>Kelola Pengguna</span></button>
+        <button class="nav-btn" data-page="adminMerchantsPage"><i class="bi bi-shop"></i><span>Kelola Merchant</span></button>
+        <button class="nav-btn" data-page="adminReportsPage"><i class="bi bi-file-earmark-bar-graph"></i><span>Laporan</span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="security-status">
+          <i class="bi bi-shield-check"></i>
+          <div>
+            <strong>Sistem Aman</strong>
+            <span>Realtime monitoring aktif</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div>
+          <button class="btn btn-light d-lg-none" id="mobileMenuBtn"><i class="bi bi-list"></i></button>
+          <span class="page-kicker d-none d-md-inline">Digital Wallet</span>
+          <h1 id="pageTitle" class="mb-0">Dashboard</h1>
+        </div>
+        <div class="topbar-actions">
+          <div class="search-mini d-none d-md-flex">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Cari transaksi...">
+          </div>
+          <button class="icon-btn" data-page="notificationsPage">
+            <i class="bi bi-bell"></i>
+            <span class="dot"></span>
+          </button>
+          <button class="profile-mini" data-page="profilePage">
+            <img src="https://api.dicebear.com/8.x/initials/svg?seed=Rexy" alt="Profile">
+            <span class="d-none d-md-inline">Rexy</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Mobile Drawer -->
+      <div id="mobileDrawer" class="mobile-drawer">
+        <div class="drawer-header">
+          <div class="sidebar-brand">
+            <div class="brand-logo small"><i class="bi bi-wallet2"></i></div>
+            <div><strong>PayNexa</strong><span>Menu</span></div>
+          </div>
+          <button class="icon-btn" id="closeDrawerBtn"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="drawer-nav">
+          <button class="nav-btn active" data-page="dashboardPage"><i class="bi bi-house-door"></i><span>Dashboard</span></button>
+          <button class="nav-btn" data-page="topupPage"><i class="bi bi-plus-circle"></i><span>Top Up</span></button>
+          <button class="nav-btn" data-page="transferPage"><i class="bi bi-arrow-left-right"></i><span>Transfer</span></button>
+          <button class="nav-btn" data-page="qrisPage"><i class="bi bi-qr-code-scan"></i><span>QRIS</span></button>
+          <button class="nav-btn" data-page="historyPage"><i class="bi bi-clock-history"></i><span>Riwayat</span></button>
+          <button class="nav-btn" data-page="profilePage"><i class="bi bi-person"></i><span>Profil</span></button>
+          <button class="nav-btn" data-page="supportPage"><i class="bi bi-headset"></i><span>FAQ & CS</span></button>
+          <button class="nav-btn" data-page="adminDashboardPage"><i class="bi bi-speedometer2"></i><span>Admin</span></button>
+        </div>
+      </div>
+      <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+      <!-- Content -->
+      <main class="content-container">
+
+        <!-- Dashboard -->
+        <section id="dashboardPage" class="app-page active" data-title="Dashboard">
+          <div class="welcome-row">
+            <div>
+              <p class="text-secondary mb-1">Halo, Rexy 👋</p>
+              <h2 class="fw-bold mb-0">Kelola transaksi kamu hari ini</h2>
+            </div>
+            <img class="avatar-lg" src="https://api.dicebear.com/8.x/initials/svg?seed=Rexy" alt="Rexy">
+          </div>
+
+          <div class="balance-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <span class="balance-label">Saldo Utama</span>
+                <h3 id="balanceText">Rp 2.450.000</h3>
+                <p class="mb-0 text-white-75">ID Akun: PNX-****-2048</p>
+              </div>
+              <div class="balance-icon"><i class="bi bi-shield-check"></i></div>
+            </div>
+            <div class="balance-footer">
+              <span><i class="bi bi-lightning-charge"></i> Transaksi cepat</span>
+              <span><i class="bi bi-lock"></i> Secure</span>
+            </div>
+          </div>
+
+          <div id="lowBalanceBanner" class="alert alert-warning d-none rounded-4 border-0">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Saldo Anda rendah, segera top up agar transaksi tetap lancar.
+          </div>
+
+          <div class="quick-actions">
+            <button class="quick-btn" data-page="topupPage"><i class="bi bi-plus-circle"></i><span>Top Up</span></button>
+            <button class="quick-btn" data-page="transferPage"><i class="bi bi-arrow-left-right"></i><span>Transfer</span></button>
+            <button class="quick-btn primary" data-page="qrisPage"><i class="bi bi-qr-code-scan"></i><span>QRIS</span></button>
+            <button class="quick-btn" data-page="historyPage"><i class="bi bi-clock-history"></i><span>Riwayat</span></button>
+          </div>
+
+          <div class="section-card">
+            <div class="section-header">
+              <h3>Transaksi Terbaru</h3>
+              <button class="btn-link-clean" data-page="historyPage">Lihat semua</button>
+            </div>
+            <div id="recentTransactions"></div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-header">
+              <h3>Penerima Favorit</h3>
+              <button class="btn-link-clean" data-page="transferPage">Transfer</button>
+            </div>
+            <div id="favoriteRecipients" class="favorite-row"></div>
+          </div>
+        </section>
+
+        <!-- Top Up -->
+        <section id="topupPage" class="app-page" data-title="Saldo & Top Up">
+          <div class="row g-4">
+            <div class="col-lg-7">
+              <div class="section-card">
+                <h2 class="section-title">Top Up Saldo</h2>
+                <p class="text-secondary">Pilih nominal atau masukkan nominal custom.</p>
+
+                <div class="mini-balance mb-4">
+                  <span>Saldo saat ini</span>
+                  <strong id="topupBalanceText">Rp 2.450.000</strong>
+                </div>
+
+                <label class="form-label">Pilih Nominal</label>
+                <div class="amount-grid mb-3">
+                  <button class="amount-chip" data-amount="50000">Rp50.000</button>
+                  <button class="amount-chip" data-amount="100000">Rp100.000</button>
+                  <button class="amount-chip" data-amount="250000">Rp250.000</button>
+                  <button class="amount-chip" data-amount="500000">Rp500.000</button>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Nominal Custom</label>
+                  <input type="number" class="form-control" id="topupAmount" placeholder="Masukkan nominal top up">
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Metode Pembayaran</label>
+                  <select id="topupMethod" class="form-select">
+                    <option>Virtual Account BCA</option>
+                    <option>Bank Transfer</option>
+                    <option>Kartu Debit</option>
+                    <option>Minimarket</option>
+                    <option>QRIS</option>
+                  </select>
+                </div>
+
+                <button id="btnTopupContinue" class="btn btn-primary btn-lg w-100">
+                  Lanjutkan
+                </button>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="section-card sticky-summary">
+                <h3>Ringkasan</h3>
+                <div class="summary-line"><span>Nominal</span><strong id="summaryTopupAmount">Rp 0</strong></div>
+                <div class="summary-line"><span>Biaya Admin</span><strong>Rp 1.000</strong></div>
+                <div class="summary-line"><span>Metode</span><strong id="summaryTopupMethod">VA BCA</strong></div>
+                <hr>
+                <div class="summary-line total"><span>Total Bayar</span><strong id="summaryTopupTotal">Rp 0</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Transfer -->
+        <section id="transferPage" class="app-page" data-title="Transfer Saldo">
+          <div class="row g-4">
+            <div class="col-lg-7">
+              <div class="section-card">
+                <h2 class="section-title">Transfer Saldo</h2>
+                <p class="text-secondary">Kirim saldo ke pengguna PayNexa lainnya.</p>
+
+                <label class="form-label">Penerima Favorit</label>
+                <div id="transferFavorites" class="favorite-row mb-4"></div>
+
+                <form id="transferForm" novalidate>
+                  <div class="mb-3">
+                    <label class="form-label">Nomor HP / Username Penerima</label>
+                    <input type="text" class="form-control" id="transferReceiver" placeholder="08xxxxxxxxxx / username" required>
+                    <div class="invalid-feedback">Penerima wajib diisi.</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Nominal Transfer</label>
+                    <input type="number" class="form-control" id="transferAmount" placeholder="Masukkan nominal" required>
+                    <div class="invalid-feedback">Nominal wajib diisi.</div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Catatan</label>
+                    <textarea class="form-control" id="transferNote" rows="3" placeholder="Contoh: Bayar makan siang"></textarea>
+                  </div>
+
+                  <div id="transferError" class="error-state d-none mb-4">
+                    <i class="bi bi-exclamation-octagon"></i>
+                    <div>
+                      <strong>Saldo tidak cukup</strong>
+                      <p>Saldo Anda tidak cukup untuk melakukan transfer.</p>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-lg w-100" type="submit">
+                    Konfirmasi Transfer
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="section-card">
+                <h3>Keamanan Transfer</h3>
+                <div class="security-list">
+                  <div><i class="bi bi-check-circle"></i> Validasi saldo otomatis</div>
+                  <div><i class="bi bi-check-circle"></i> Konfirmasi sebelum transaksi</div>
+                  <div><i class="bi bi-check-circle"></i> Bukti transaksi digital</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- QRIS -->
+        <section id="qrisPage" class="app-page" data-title="Pembayaran QRIS">
+          <div class="row g-4">
+            <div class="col-lg-7">
+              <div class="qris-card">
+                <div class="scan-frame">
+                  <span class="corner c1"></span>
+                  <span class="corner c2"></span>
+                  <span class="corner c3"></span>
+                  <span class="corner c4"></span>
+                  <i class="bi bi-qr-code-scan"></i>
+                  <p>Arahkan kamera ke kode QRIS</p>
+                  <small>Simulasi scanner QR</small>
+                </div>
+                <button id="btnScanQR" class="btn btn-primary w-100 btn-lg mt-4">
+                  Simulasikan Scan QR
+                </button>
+                <button class="btn btn-outline-primary w-100 mt-3">
+                  <i class="bi bi-image me-2"></i>Upload QR dari Galeri
+                </button>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div id="merchantInfo" class="section-card d-none">
+                <span class="status-badge success mb-3">Merchant Terverifikasi</span>
+                <h3>Rexy Coffee Space</h3>
+                <p class="text-secondary mb-4">Cafe & Beverage · Jakarta Selatan</p>
+
+                <label class="form-label">Nominal Pembayaran</label>
+                <input type="number" class="form-control mb-4" id="qrisAmount" placeholder="Masukkan nominal" value="35000">
+
+                <button id="btnPayQRIS" class="btn btn-primary btn-lg w-100">
+                  Bayar Sekarang
+                </button>
+              </div>
+
+              <div id="qrisEmpty" class="empty-state">
+                <i class="bi bi-qr-code"></i>
+                <h3>Belum Ada QR Terbaca</h3>
+                <p>Informasi merchant akan muncul setelah QR berhasil dipindai.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- History -->
+        <section id="historyPage" class="app-page" data-title="Riwayat Transaksi">
+          <div class="section-card">
+            <div class="history-tools">
+              <div class="search-bar">
+                <i class="bi bi-search"></i>
+                <input type="text" id="historySearch" placeholder="Cari transaksi...">
+              </div>
+              <div class="export-actions">
+                <button class="btn btn-outline-primary"><i class="bi bi-filetype-pdf me-2"></i>PDF</button>
+                <button class="btn btn-outline-success"><i class="bi bi-file-earmark-excel me-2"></i>Excel</button>
+              </div>
+            </div>
+
+            <div class="filter-chips mt-3">
+              <button class="filter-chip active" data-filter="all">Semua</button>
+              <button class="filter-chip" data-filter="masuk">Masuk</button>
+              <button class="filter-chip" data-filter="keluar">Keluar</button>
+              <button class="filter-chip" data-filter="qris">QRIS</button>
+              <button class="filter-chip" data-filter="topup">Top Up</button>
+            </div>
+
+            <div id="historyList" class="mt-4"></div>
+          </div>
+        </section>
+
+        <!-- Transaction Detail -->
+        <section id="transactionDetailPage" class="app-page" data-title="Detail Transaksi">
+          <div class="receipt-card mx-auto">
+            <div class="receipt-status success">
+              <i class="bi bi-check-circle-fill"></i>
+              <h2>Transaksi Berhasil</h2>
+              <p>Rp 125.000</p>
+            </div>
+            <div class="receipt-lines">
+              <div><span>Tanggal & Waktu</span><strong>12 Juni 2026, 09:20</strong></div>
+              <div><span>ID Transaksi</span><strong>TRX-20260612-0920</strong></div>
+              <div><span>Penerima/Merchant</span><strong>Rexy Coffee Space</strong></div>
+              <div><span>Metode</span><strong>QRIS</strong></div>
+              <div><span>Biaya Admin</span><strong>Rp 0</strong></div>
+              <div><span>Catatan</span><strong>Pembayaran berhasil</strong></div>
+            </div>
+            <div class="d-grid gap-2 mt-4">
+              <button class="btn btn-primary"><i class="bi bi-download me-2"></i>Simpan Bukti</button>
+              <button class="btn btn-outline-primary"><i class="bi bi-printer me-2"></i>Cetak</button>
+              <button class="btn btn-light"><i class="bi bi-share me-2"></i>Bagikan</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Notifications -->
+        <section id="notificationsPage" class="app-page" data-title="Notifikasi">
+          <div class="section-card">
+            <div class="section-header">
+              <h3>Notifikasi</h3>
+              <div class="filter-chips compact">
+                <button class="filter-chip active">Semua</button>
+                <button class="filter-chip">Belum Dibaca</button>
+              </div>
+            </div>
+
+            <div class="notification-list">
+              <div class="notification-item unread success">
+                <i class="bi bi-check-circle"></i>
+                <div>
+                  <strong>Transaksi berhasil</strong>
+                  <p>Transfer ke Andi sebesar Rp125.000 berhasil.</p>
+                  <small>2 menit lalu</small>
+                </div>
+              </div>
+              <div class="notification-item danger">
+                <i class="bi bi-x-circle"></i>
+                <div>
+                  <strong>Transaksi gagal</strong>
+                  <p>QRIS gagal diproses karena koneksi tidak stabil.</p>
+                  <small>15 menit lalu</small>
+                </div>
+              </div>
+              <div class="notification-item warning">
+                <i class="bi bi-exclamation-triangle"></i>
+                <div>
+                  <strong>Saldo rendah</strong>
+                  <p>Saldo Anda mendekati batas minimum.</p>
+                  <small>1 jam lalu</small>
+                </div>
+              </div>
+              <div class="notification-item info">
+                <i class="bi bi-shield-lock"></i>
+                <div>
+                  <strong>Keamanan akun</strong>
+                  <p>Login baru terdeteksi dari perangkat Chrome Windows.</p>
+                  <small>Hari ini</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Profile -->
+        <section id="profilePage" class="app-page" data-title="Profil Pengguna">
+          <div class="row g-4">
+            <div class="col-lg-5">
+              <div class="profile-card">
+                <img src="https://api.dicebear.com/8.x/initials/svg?seed=Rexy" alt="Profile">
+                <button class="btn btn-light btn-sm mt-3"><i class="bi bi-camera me-2"></i>Upload Foto</button>
+                <h2 class="mt-3 mb-1">Rexy Kurniawan</h2>
+                <p class="text-secondary">reksikurniawan13@gmail.com</p>
+                <span class="status-badge success">Akun Terverifikasi</span>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="section-card">
+                <h3>Pengaturan Akun</h3>
+                <div class="menu-list">
+                  <button><i class="bi bi-pencil-square"></i>Ubah Profil<i class="bi bi-chevron-right"></i></button>
+                  <button><i class="bi bi-key"></i>Ubah Password<i class="bi bi-chevron-right"></i></button>
+                  <button><i class="bi bi-arrow-counterclockwise"></i>Reset Password<i class="bi bi-chevron-right"></i></button>
+                  <button><i class="bi bi-shield-lock"></i>Keamanan Akun<i class="bi bi-chevron-right"></i></button>
+                  <button class="danger" id="btnLogout"><i class="bi bi-box-arrow-right"></i>Logout<i class="bi bi-chevron-right"></i></button>
+                </div>
+              </div>
+              <div class="section-card mt-4">
+                <h3>Keamanan Akun</h3>
+                <div class="security-list">
+                  <div><i class="bi bi-check-circle"></i> PIN transaksi aktif</div>
+                  <div><i class="bi bi-check-circle"></i> Verifikasi 2 langkah aktif</div>
+                  <div><i class="bi bi-phone"></i> Perangkat login: Chrome Windows</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ & Support -->
+        <section id="supportPage" class="app-page" data-title="FAQ & Live Chat CS">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="section-card">
+                <h2 class="section-title">Pusat Bantuan</h2>
+                <div class="search-bar mb-4">
+                  <i class="bi bi-search"></i>
+                  <input type="text" id="faqSearch" placeholder="Cari pertanyaan...">
+                </div>
+
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">Bagaimana cara top up saldo?</button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Masuk ke menu Top Up, pilih nominal, pilih metode pembayaran, lalu konfirmasi transaksi.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Kenapa transfer gagal?</button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Transfer dapat gagal jika saldo tidak cukup, penerima tidak valid, atau koneksi sedang tidak stabil.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Apakah QRIS aman?</button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Ya, pembayaran QRIS dilengkapi validasi merchant dan konfirmasi sebelum pembayaran.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="chat-card">
+                <div class="chat-header">
+                  <div>
+                    <strong>Live Chat CS</strong>
+                    <span><i class="bi bi-circle-fill"></i> Online</span>
+                  </div>
+                  <i class="bi bi-headset"></i>
+                </div>
+                <div id="chatMessages" class="chat-body">
+                  <div class="chat-bubble cs">Halo Rexy, ada yang bisa kami bantu?</div>
+                  <div class="chat-bubble user">Saya ingin tanya soal top up.</div>
+                </div>
+                <form id="chatForm" class="chat-input">
+                  <input type="text" id="chatInput" placeholder="Tulis pesan...">
+                  <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="adminDashboardPage" class="app-page" data-title="Admin Dashboard">
+          <div class="admin-grid">
+            <div class="metric-card"><i class="bi bi-people"></i><span>Total Pengguna</span><strong>12.480</strong></div>
+            <div class="metric-card"><i class="bi bi-arrow-left-right"></i><span>Total Transaksi</span><strong>86.240</strong></div>
+            <div class="metric-card"><i class="bi bi-shop"></i><span>Total Merchant</span><strong>1.240</strong></div>
+            <div class="metric-card"><i class="bi bi-wallet2"></i><span>Saldo Beredar</span><strong>Rp 8,2 M</strong></div>
+          </div>
+
+          <div class="row g-4 mt-1">
+            <div class="col-lg-7">
+              <div class="section-card">
+                <div class="section-header">
+                  <h3>Aktivitas Transaksi</h3>
+                  <span class="status-badge success">Realtime</span>
+                </div>
+                <div class="simple-chart">
+                  <span style="height:45%"></span>
+                  <span style="height:70%"></span>
+                  <span style="height:50%"></span>
+                  <span style="height:90%"></span>
+                  <span style="height:65%"></span>
+                  <span style="height:80%"></span>
+                  <span style="height:55%"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="section-card">
+                <h3>Monitoring Realtime</h3>
+                <div class="monitor-list">
+                  <div><span class="pulse"></span> 24 transaksi baru masuk</div>
+                  <div><span class="pulse warning"></span> 3 transaksi pending</div>
+                  <div><span class="pulse danger"></span> 1 indikasi fraud</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card mt-4">
+            <div class="section-header">
+              <h3>Transaksi Terbaru</h3>
+              <button class="btn btn-outline-primary btn-sm" data-page="adminReportsPage">Lihat Laporan</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Pengguna</th>
+                    <th>Jenis</th>
+                    <th>Nominal</th>
+                    <th>Status</th>
+                    <th>Waktu</th>
+                  </tr>
+                </thead>
+                <tbody id="adminLatestTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Users -->
+        <section id="adminUsersPage" class="app-page" data-title="Kelola Pengguna">
+          <div class="section-card">
+            <div class="admin-toolbar">
+              <div class="search-bar">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Cari pengguna...">
+              </div>
+              <select class="form-select">
+                <option>Semua Status</option>
+                <option>Aktif</option>
+                <option>Terblokir</option>
+                <option>Perlu Verifikasi</option>
+              </select>
+            </div>
+
+            <div class="table-responsive mt-4">
+              <table class="table admin-table align-middle">
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Email/HP</th>
+                    <th>Status</th>
+                    <th>Tanggal Daftar</th>
+                    <th>Transaksi</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rexy Kurniawan</td>
+                    <td>reksikurniawan13@gmail.com</td>
+                    <td><span class="status-badge success">Aktif</span></td>
+                    <td>12 Jun 2026</td>
+                    <td>48</td>
+                    <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+                  </tr>
+                  <tr>
+                    <td>Andi Saputra</td>
+                    <td>andi@email.com</td>
+                    <td><span class="status-badge warning">Perlu Verifikasi</span></td>
+                    <td>10 Jun 2026</td>
+                    <td>12</td>
+                    <td><button class="btn btn-sm btn-outline-danger">Blokir</button></td>
+                  </tr>
+                  <tr>
+                    <td>Maya Putri</td>
+                    <td>maya@email.com</td>
+                    <td><span class="status-badge danger">Terblokir</span></td>
+                    <td>9 Jun 2026</td>
+                    <td>30</td>
+                    <td><button class="btn btn-sm btn-outline-primary">Detail</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Merchants -->
+        <section id="adminMerchantsPage" class="app-page" data-title="Kelola Merchant">
+          <div class="section-card">
+            <div class="section-header">
+              <h3>Daftar Merchant</h3>
+              <button class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Tambah Merchant</button>
+            </div>
+            <div class="merchant-grid">
+              <div class="merchant-card">
+                <div class="merchant-icon"><i class="bi bi-cup-hot"></i></div>
+                <h4>Rexy Coffee Space</h4>
+                <p>Cafe & Beverage</p>
+                <span class="status-badge success">Aktif</span>
+                <div class="merchant-meta">
+                  <span>QRIS ID: QR-88021</span>
+                  <span>Transaksi: 1.248</span>
+                  <span>Integrasi: API Aktif</span>
+                </div>
+                <button class="btn btn-outline-primary w-100">Edit Merchant</button>
+              </div>
+              <div class="merchant-card">
+                <div class="merchant-icon"><i class="bi bi-bag"></i></div>
+                <h4>Nexa Mart</h4>
+                <p>Retail</p>
+                <span class="status-badge success">Aktif</span>
+                <div class="merchant-meta">
+                  <span>QRIS ID: QR-88222</span>
+                  <span>Transaksi: 920</span>
+                  <span>Integrasi: API Aktif</span>
+                </div>
+                <button class="btn btn-outline-primary w-100">Edit Merchant</button>
+              </div>
+              <div class="merchant-card">
+                <div class="merchant-icon"><i class="bi bi-shop"></i></div>
+                <h4>Alpha Store</h4>
+                <p>General Store</p>
+                <span class="status-badge danger">Nonaktif</span>
+                <div class="merchant-meta">
+                  <span>QRIS ID: QR-88990</span>
+                  <span>Transaksi: 128</span>
+                  <span>Integrasi: Nonaktif</span>
+                </div>
+                <button class="btn btn-outline-primary w-100">Detail</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Reports -->
+        <section id="adminReportsPage" class="app-page" data-title="Laporan Transaksi">
+          <div class="section-card">
+            <div class="admin-toolbar">
+              <input type="date" class="form-control">
+              <select class="form-select">
+                <option>Semua Jenis Transaksi</option>
+                <option>Top Up</option>
+                <option>Transfer</option>
+                <option>QRIS</option>
+              </select>
+              <button class="btn btn-outline-primary"><i class="bi bi-filetype-pdf me-2"></i>PDF</button>
+              <button class="btn btn-outline-success"><i class="bi bi-file-earmark-excel me-2"></i>Excel</button>
+            </div>
+
+            <div class="admin-grid mt-4">
+              <div class="metric-card"><i class="bi bi-receipt"></i><span>Total Transaksi</span><strong>8.420</strong></div>
+              <div class="metric-card"><i class="bi bi-arrow-down-circle"></i><span>Uang Masuk</span><strong>Rp 1,8 M</strong></div>
+              <div class="metric-card"><i class="bi bi-arrow-up-circle"></i><span>Uang Keluar</span><strong>Rp 1,2 M</strong></div>
+              <div class="metric-card"><i class="bi bi-hourglass-split"></i><span>Pending</span><strong>42</strong></div>
+            </div>
+
+            <div class="table-responsive mt-4">
+              <table class="table admin-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Jenis</th>
+                    <th>Jumlah Transaksi</th>
+                    <th>Uang Masuk</th>
+                    <th>Uang Keluar</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>12 Jun 2026</td><td>Top Up</td><td>320</td><td>Rp 240.000.000</td><td>-</td><td><span class="status-badge success">Normal</span></td></tr>
+                  <tr><td>12 Jun 2026</td><td>Transfer</td><td>510</td><td>Rp 90.000.000</td><td>Rp 88.000.000</td><td><span class="status-badge success">Normal</span></td></tr>
+                  <tr><td>12 Jun 2026</td><td>QRIS</td><td>720</td><td>Rp 180.000.000</td><td>Rp 172.000.000</td><td><span class="status-badge warning">Review</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav d-lg-none">
+      <button class="bottom-nav-btn active" data-page="dashboardPage"><i class="bi bi-house-door"></i><span>Home</span></button>
+      <button class="bottom-nav-btn" data-page="historyPage"><i class="bi bi-clock-history"></i><span>Riwayat</span></button>
+      <button class="bottom-nav-btn scan" data-page="qrisPage"><i class="bi bi-qr-code-scan"></i><span>QRIS</span></button>
+      <button class="bottom-nav-btn" data-page="transferPage"><i class="bi bi-star"></i><span>Favorit</span></button>
+      <button class="bottom-nav-btn" data-page="profilePage"><i class="bi bi-person"></i><span>Profil</span></button>
+    </nav>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-5 border-0">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="confirmModalTitle">Konfirmasi Transaksi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="confirmModalBody"></div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-primary" id="confirmModalAction">Konfirmasi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay d-none">
+    <div class="loader-card">
+      <div class="spinner-border text-primary"></div>
+      <strong>Memproses transaksi...</strong>
+      <span>Mohon tunggu sebentar</span>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="appToast" class="toast border-0 shadow-lg" role="alert">
+      <div class="toast-body d-flex align-items-center gap-2">
+        <i id="toastIcon" class="bi bi-check-circle-fill text-success"></i>
+        <span id="toastMessage">Berhasil</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
